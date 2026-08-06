@@ -1,15 +1,12 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "app/main.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "50mb",
-        "runtime": "python3.11"
-      }
+  "functions": {
+    "app/main.py": {
+      "runtime": "python3.11",
+      "maxDuration": 30,
+      "memory": 1024
     }
-  ],
+  },
   "routes": [
     {
       "src": "/(.*)",
@@ -20,10 +17,5 @@
     "PYTHONPATH": ".",
     "APP_ENV": "production",
     "DEBUG": "false"
-  },
-   "functions": {
-    "app/main.py": {
-      "runtime": "python3.11"
-    }
   }
 }
