@@ -20,5 +20,10 @@
     "PYTHONPATH": ".",
     "APP_ENV": "production",
     "DEBUG": "false"
+  },
+   "functions": {
+    "app/main.py": {
+      "runtime": "python3.11"
+    }
   }
 }
