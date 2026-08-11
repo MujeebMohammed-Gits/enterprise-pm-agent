@@ -18,7 +18,7 @@ from persistence.storage import StorageFactory
 from src.core.workflow.engine import WorkflowInstance
 
 # Configure logging
-logging.basicConfig(level=settings.monitoring.log_level.upper())
+logging.basicConfig(level=settings.log_level.upper())
 logger = logging.getLogger(__name__)
 
 # Security
@@ -67,10 +67,10 @@ app = FastAPI(
 )
 
 # Configure CORS
-if settings.security.backend_cors_origins:
+if settings.backend_cors_origins:
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=[str(origin) for origin in settings.security.backend_cors_origins],
+        allow_origins=[str(origin) for origin in settings.backend_cors_origins],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
