@@ -1,15 +1,16 @@
-# Enterprise PM Agent
 
-An enterprise‑grade, AI‑enhanced Project & Delivery Management agent that adapts to any methodology (Waterfall, Scrum, SAFe, LeSS, Hybrid, etc.) and integrates seamlessly with the tools your organization already uses. Built on a FastAPI backend, it exposes a clean REST API (Vercel‑ready) and is accompanied by a customizable Admin‑Dashboard, embeddable widgets, and a mobile companion app.
+Enterprise PM Agent
+
+An enterprise‑grade, AI‑enhanced Project & Delivery Management agent that adapts to any methodology (Waterfall, Scrum, SAFe, LeSS, Hybrid, etc.) and integrates seamlessly with the tools your organization already uses.  Built on a FastAPI backend, it exposes a clean REST API (Vercel‑ready) and is accompanied by a customizable Admin‑Dashboard, embeddable widgets, and a mobile companion app.
 
 ---
 1. Overview
 
-What it is
+What it is?
 
-enterprise-pm-agent is a backend service that orchestrates project workflows, executes AI‑driven insights, and connects to external PM‑systems via pluggable adapters. The core is written in Python/FastAPI and can be deployed to Vercel, Kubernetes, or any Docker‑capable environment.
+enterprise-pm-agent is a backend service that orchestrates project workflows, executes AI‑driven insights, and connects to external PM‑systems via pluggable adapters.  The core is written in Python/FastAPI and can be deployed to Vercel, Kubernetes, or any Docker‑capable environment.
 
-Problems it solves
+Problems it solves?
 
 ┌───────────────────────────────────┬──────────────────────────────────────────────────────────────────────────────────────────┐
 │              Problem              │                                 How the agent solves it                                  │
@@ -27,7 +28,7 @@ Problems it solves
 │                                   │ analytics                                                                                │
 └───────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────┘
 
-Who it is for
+Who it is for?
 
 - PMO & Delivery Leaders who need standardized reporting and compliance evidence
 - Engineering & Product Teams that want lightweight, self‑service workflow execution
@@ -58,9 +59,11 @@ High‑level architecture
 - Storage Layer – Abstract storage adapter (in‑memory, file, PostgreSQL, MongoDB) with lazy‑initialized connection pools.
 - Security – JWT‑based authentication, optional IdP integration (Azure AD, Okta, LDAP), role‑based access, audit logging, rate limiting, circuit‑breaker patterns.
 
+---
+
 Custom Admin‑Dashboard
 
-The Admin Dashboard is a separate SPA (React + TypeScript + Ant Design) that consumes the agent’s REST API. It solves the need for a single pane of glass where administrators can:
+The Admin Dashboard is a separate SPA (React + TypeScript + Ant Design) that consumes the agent’s REST API.  It solves the need for a single pane of glass where administrators can:
 
 1. Visualize any workflow as an interactive state‑machine diagram.
 2. Monitor active workflow instances in real time (filters by entity, user, date range).
@@ -224,7 +227,7 @@ uvicorn app.main:app --reload   # adds hot‑reload for development
 
 3.3 Deploying to Vercel
 
-Vercel treats the project as a serverless Python function. The vercel.json file at the repo root tells Vercel how to build and route requests.
+Vercel treats the project as a serverless Python function.  The vercel.json file at the repo root tells Vercel how to build and route requests.
 
 # 1️⃣ Install Vercel CLI (if not already)
 npm i -g vercel
@@ -285,7 +288,7 @@ curl -s -H "Authorization: Bearer $TOKEN" $VERCEL_URL/auth/users/me | jq .
 
 4.1 Environment Variables
 
-All configuration is driven by environment variables (read via python-dotenv and pydantic-settings). The table below shows the most important variables; see config/settings.py for the full list.
+All configuration is driven by environment variables (read via python-dotenv and pydantic-settings).  The table below shows the most important variables; see config/settings.py for the full list.
 
 ┌─────────────────────────────┬──────────────────────────────────────┬─────────────────────────────────────────────────────────┐
 │          Variable           │               Purpose                │                    Example / Default                    │
@@ -329,7 +332,7 @@ All configuration is driven by environment variables (read via python-dotenv and
 ├─────────────────────────────┼──────────────────────────────────────┼─────────────────────────────────────────────────────────┤
 │ ALGORITHM                   │ JWT algorithm (HS256 only for now)   │ HS256                                                   │
 ├─────────────────────────────┼──────────────────────────────────────┼─────────────────────────────────────────────────────────┤
-│ BACKEND_CORS_ORIGINS        │ Comma‑separated list or JSON array   │ ["http://localhost:3000","https://app.example.com"] │
+│ BACKEND_CORS_ORIGINS        │ Comma‑separated list or JSON array   │ [\"http://localhost:3000\",\"https://app.example.com\"] │
 │                             │ of allowed origins                   │                                                         │
 ├─────────────────────────────┼──────────────────────────────────────┼─────────────────────────────────────────────────────────┤
 │ ENABLE_METRICS              │ Toggle Prometheus metrics endpoint   │ true                                                    │
@@ -383,11 +386,11 @@ All configuration is driven by environment variables (read via python-dotenv and
 │ AI_TEMPERATURE              │ Sampling temperature                 │ 0.7                                                     │
 └─────────────────────────────┴──────────────────────────────────────┴─────────────────────────────────────────────────────────┘
 
-▎ Tip: Keep a copy of .env.example in the repository (not committed) and create a .env file locally. In Vercel, set the same keys via the UI; they override any .env file.
+▎ Tip: Keep a copy of .env.example in the repository (not committed) and create a .env file locally.  In Vercel, set the same keys via the UI; they override any .env file.
 
 4.2 Settings Object (config/settings.py)
 
-The Settings class (a subclass of pydantic_settings.BaseSettings) provides typed access to all variables. Example usage:
+The Settings class (a subclass of pydantic_settings.BaseSettings) provides typed access to all variables.  Example usage:
 
 from config.settings import settings
 
@@ -398,7 +401,7 @@ Nested objects (e.g., settings.database, settings.security) give you logical gro
 
 4.3 Workflow Engine Configuration
 
-Workflows are defined as JSON/YAML files (or programmatically via the WorkflowDefinition dataclass). By default, the engine registers two built‑in workflows (Waterfall Development and Scrum Development) from src/core/workflow/engine.py.
+Workflows are defined as JSON/YAML files (or programmatically via the WorkflowDefinition dataclass).  By default, the engine registers two built‑in workflows (Waterfall Development and Scrum Development) from src/core/workflow/engine.py.
 
 To add your own:
 
@@ -417,7 +420,7 @@ The abstract StorageAdapter lets you swap persistence mechanisms without changin
 - PostgreSQLStorageAdapter – fully featured, connection‑pooled, supports migrations via Alembic.
 - MongoDBStorageAdapter – (planned) for document‑oriented storage.
 
-Select the adapter by setting the environment variable STORAGE_TYPE (optional – the factory defaults to "memory"). Example:
+Select the adapter by setting the environment variable STORAGE_TYPE (optional – the factory defaults to "memory").  Example:
 
 STORAGE_TYPE=postgresql
 # The factory will read DATABASE_URL from settings and create a PostgreSQL pool.
@@ -426,16 +429,16 @@ If you need a custom adapter, subclass StorageAdapter[T] and register it in Stor
 
 4.5 Authentication (JWT placeholder)
 
-When USE_IDP_AUTH=false (default), the agent uses a simple JWT issued by the /auth/token endpoint. The payload contains:
+When USE_IDP_AUTH=false (default), the agent uses a simple JWT issued by the /auth/token endpoint.  The payload contains:
 
 - sub – username
 - roles – list of role strings (e.g., ["admin","user"])
 - permissions – list of permission strings (e.g., ["workflow:create","workflow:read"])
 - exp – expiration timestamp (UTC)
 
-The secret key is settings.security.secret_key. Token expiration is governed by settings.security.access_token_expire_minutes.
+The secret key is settings.security.secret_key.  Token expiration is governed by settings.security.access_token_expire_minutes.
 
-To integrate with an external IdP, set USE_IDP_AUTH=true and provide the IdP credentials. The authentication dependency (get_current_user) will first try to validate a local JWT; if that fails and IdP is enabled, it will delegate to the appropriate provider (Azure AD, Okta, LDAP). The provider returns a TokenData object with the same shape, enabling seamless role‑based access control.
+To integrate with an external IdP, set USE_IDP_AUTH=true and provide the IdP credentials.  The authentication dependency (get_current_user) will first try to validate a local JWT; if that fails and IdP is enabled, it will delegate to the appropriate provider (Azure AD, Okta, LDAP).  The provider returns a TokenData object with the same shape, enabling seamless role‑based access control.
 
 ---
 5. Customization Guide
@@ -464,7 +467,7 @@ class IntegrationFactory:
 
 5.2 Mapping Workflow States to PM Tool States
 
-Most integrations expose a finite set of statuses (e.g., Jira: To Do, In Progress, In Review, Done). To keep the workflow engine in sync:
+Most integrations expose a finite set of statuses (e.g., Jira: To Do, In Progress, In Review, Done).  To keep the workflow engine in sync:
 
 1. Define a mapping table in your adapter (e.g., JiraAdapter._state_map).
 2. On transition execution, after the workflow engine updates the internal state, call the adapter’s update_issue_status(issue_id, internal_state) method which looks up the corresponding external status and issues the API call.
@@ -472,7 +475,7 @@ Most integrations expose a finite set of statuses (e.g., Jira: To Do, In Progres
 
 5.3 Extending Transitions
 
-Transitions are first‑class objects in the workflow definition. To add a new kind of action (e.g., “Create a Confluence page”):
+Transitions are first‑class objects in the workflow definition.  To add a new kind of action (e.g., “Create a Confluence page”):
 
 1. Add a new value to ActionType enum in src/core/workflow/engine.py.
 2. Implement a corresponding _execute_<action>_action method in WorkflowEngine.
@@ -484,7 +487,7 @@ Because the workflow definition is data‑driven, no code changes are required t
 
 Business rules can be expressed as guards (conditions) on transitions or as entry/exit actions on states.
 
-- Guards are simple JavaScript‑like expressions evaluated by the engine (condition field). For complex logic, implement a custom Python function and reference it via a string that the engine resolves to a callable in a safe whitelist (e.g., my_rules.is_eligible_for_discount).
+- Guards are simple JavaScript‑like expressions evaluated by the engine (condition field).  For complex logic, implement a custom Python function and reference it via a string that the engine resolves to a callable in a safe whitelist (e.g., my_rules.is_eligible_for_discount).
 - Actions allow arbitrary side‑effects: call an external API, write to a database, send a notification, or trigger a downstream workflow (via the internal start_workflow call).
 
 If you need a rule that spans multiple workflows (e.g., “only allow a release workflow to start when all feature workflows are in Done”), implement a custom guard that queries the workflow engine for the state of other instances (the engine exposes a read‑only API for this purpose).
@@ -750,7 +753,7 @@ A: Verify that the JiraAdapter is receiving the correct email and API token. Atl
 │ growing over time         │ production with high churn         │ TTL‑based eviction strategy for the in‑memory store.       │
 ├───────────────────────────┼────────────────────────────────────┼────────────────────────────────────────────────────────────┤
 │                           │ Vercel serverless functions have a │ Increase maxDuration in vercel.json under the function’s   │
-│ WebSocket (if used)       │  maximum execution duration        │  config (e.g., "maxDuration": 600 for 10 min) or move       │
+│ WebSocket (if used)       │  maximum execution duration        │ config (e.g., "maxDuration": 600 for 10 min) or move       │
 │ disconnects after ~30 s   │ (default 10 s, up to 300 s on paid │ long‑running connections to a dedicated service (e.g., AWS │
 │                           │  plans)                            │  API Gateway + Lambda@Edge).                               │
 └───────────────────────────┴────────────────────────────────────┴────────────────────────────────────────────────────────────┘
@@ -778,7 +781,7 @@ How to fix PM tool integration failures
 
 1. Confirm the adapter’s test_connection() returns True.
 2. Verify the external service’s API version and authentication method (e.g., Jira Cloud uses Basic Auth with email+API token).
-3. Check rate limits – if you get 429 Too Many Requests, enable the adapter’s built‑in rate‑limiter or add exponential backoff.
+3. Check rate limits – if you get 429 Too Many Requests, enable the adapter’s built‑in rate‐limiter or add exponential backoff.
 4. Review the adapter’s logs (you can inject a logger into the adapter class) to see the exact request/response.
 
 ---
