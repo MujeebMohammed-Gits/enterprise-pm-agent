@@ -31,12 +31,12 @@ enterprise-pm-agent is a backend service that orchestrates project workflows, ex
 
 ```mermaid
 flowchart LR
-    A[Admin Dashboard<br/>(React/Vue/Flutter)]
-    B[FastAPI Server<br/>(Workflow Engine)]
-    C[Integration Hub<br/>(Jira, ADO, ServiceNow)]
-    D[Mobile Companion<br/>(React Native/Flutter)]
-    E[Embedded Widgets<br/>(Workflow Canvas, Project Board, Metrics Dashboard)]
-    F[CI/CD Pipelines<br/>(GitHub Actions, GitLab CI)]
+    A["Admin Dashboard\n(React/Vue/Flutter)"]
+    B["FastAPI Server\n(Workflow Engine)"]
+    C["Integration Hub\n(Jira, ADO, ServiceNow)"]
+    D["Mobile Companion\n(React Native/Flutter)"]
+    E["Embedded Widgets\n(Workflow Canvas, Project Board, Metrics Dashboard)"]
+    F["CI/CD Pipelines\n(GitHub Actions, GitLab CI)"]
 
     A <--> B
     B <--> C
